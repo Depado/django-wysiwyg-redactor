@@ -8,6 +8,7 @@ from redactor.utils import json_dumps
 
 
 GLOBAL_OPTIONS = getattr(settings, 'REDACTOR_OPTIONS', {})
+PLUGIN_DIRECTORY = getattr(settings, 'REDACTOR_PLUGIN_DIRECTORY', 'redactor/plugins/')
 
 
 class RedactorEditor(widgets.Textarea):
@@ -57,7 +58,7 @@ class RedactorEditor(widgets.Textarea):
             plugins = self.options.get('plugins')
             for plugin in plugins:
                 js = js + (
-                    'redactor/plugins/{0}.js'.format(plugin),
+                    PLUGIN_DIRECTORY + '{0}.js'.format(plugin),
                 )
 
         css = {
